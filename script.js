@@ -65,6 +65,8 @@ const displayController = (function(){
     const cells = document.querySelectorAll('.cell');
     const dialog = document.querySelector('dialog');
 
+    document.querySelector('.first').classList.add('turn');
+
     const clearBoard = () => cells.forEach(cell => cell.textContent = '');
 
     cells.forEach(cell => cell.addEventListener('click',() => {
@@ -75,13 +77,19 @@ const displayController = (function(){
                 cell.textContent = 'X';
                 counter++;
                 result = gameBoard.gameResult();
+                document.querySelector('.first').classList.remove('turn');
+                document.querySelector('.second').classList.add('turn');
             }else{
                 gameBoard.playerMove('O', cell.attributes.value.value);
                 cell.textContent = 'O';
                 counter++;
                 result = gameBoard.gameResult();
+                document.querySelector('.first').classList.add('turn');
+                document.querySelector('.second').classList.remove('turn');
             }
             if(result != null) {
+                document.querySelector('.first').classList.remove('turn');
+                document.querySelector('.second').classList.remove('turn');
                 document.querySelector('.winner').textContent = result;
                 dialog.showModal();
                 document.querySelector('.Xscore').textContent = gameBoard.getXscore();
@@ -91,6 +99,7 @@ const displayController = (function(){
     }))
 
     document.querySelector('.retry').addEventListener('click',() => {
+        document.querySelector('.first').classList.add('turn');
         clearBoard();
         counter = 0;
         dialog.close();

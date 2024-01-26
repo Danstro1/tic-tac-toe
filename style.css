@@ -21,6 +21,12 @@ html, body{
     font-size: 40px;
 }
 
+.turn {
+    border-bottom: 3px solid black;
+    padding-bottom: 1.5vh;
+}
+
+
 .score .player:first-child{
     margin-right: 40px;
 }

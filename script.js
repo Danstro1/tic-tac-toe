@@ -15,14 +15,21 @@ const gameBoard = (function() {
             }
             if(Xcount === 3){
                 X.increaseScore();
+                Xcount = 0;
+                board = board.fill();
                 return "X Wins";
             }
             if(Ocount === 3){
                 O.increaseScore();
+                board = board.fill();
+                Ocount = 0;
                 return "O Wins";
             }
         }
         if(!board.includes(null || undefined)){
+            Xcount = 0;
+            Ocount = 0;
+            board = board.fill();
             return "Draw";
         }
         return null;
@@ -36,16 +43,59 @@ const gameBoard = (function() {
             if(player == 'O') {
                 board[cell] = 'O';
             }
-            gameResult();
         }
     }
-    
+
+    const getBoard = () => board;
+
+    const getXscore = () => X.getScore();
+    const getOscore = () => O.getScore();
+
     return {
-        board,
+        getXscore,
+        getOscore,
+        gameResult,
+        getBoard,
         playerMove,
     };
 })();
 
+const displayController = (function(){
+    let counter = 0;
+    const cells = document.querySelectorAll('.cell');
+    const dialog = document.querySelector('dialog');
+
+    const clearBoard = () => cells.forEach(cell => cell.textContent = '');
+
+    cells.forEach(cell => cell.addEventListener('click',() => {
+        let result;
+        if(gameBoard.getBoard()[cell.attributes.value.value] == null) {
+            if(counter % 2 == 0) {
+                gameBoard.playerMove('X', cell.attributes.value.value);
+                cell.textContent = 'X';
+                counter++;
+                result = gameBoard.gameResult();
+            }else{
+                gameBoard.playerMove('O', cell.attributes.value.value);
+                cell.textContent = 'O';
+                counter++;
+                result = gameBoard.gameResult();
+            }
+            if(result != null) {
+                document.querySelector('.winner').textContent = result;
+                dialog.showModal();
+                document.querySelector('.Xscore').textContent = gameBoard.getXscore();
+                document.querySelector('.Oscore').textContent = gameBoard.getOscore();
+            }
+        }
+    }))
+
+    document.querySelector('.retry').addEventListener('click',() => {
+        clearBoard();
+        counter = 0;
+        dialog.close();
+    })
+})();
 
 function createPlayer() {
     let score = 0;

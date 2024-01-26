@@ -8,6 +8,33 @@
     <script src="./script.js" defer></script>
 </head>
 <body>
-    
+    <div class="score">
+        <div class="player">X</div>
+        <div class="Xscore">0</div>
+        <div>|</div>
+        <div class="Oscore">0</div>
+        <div class="player">Y</div>
+    </div>
+    <div class="board">
+        <div class="first-row">
+            <button class="cell" value="0"></button>
+            <button class="cell" value="1"></button>
+            <button class="cell" value="2"></button>
+        </div>
+        <div class="second-row">
+            <button class="cell" value="3"></button>
+            <button class="cell" value="4"></button>
+            <button class="cell" value="5"></button>
+        </div>
+        <div class="third-row">
+            <button class="cell" value="6"></button>
+            <button class="cell" value="7"></button>
+            <button class="cell" value="8"></button>
+        </div>
+    </div>
+    <dialog>
+        <div class="winner"></div>
+        <button class="retry">Retry</button>
+    </dialog>
 </body>
 </html>

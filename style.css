@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html, body{
+    height: 100vh;
+    background-color: rgb(213, 213, 213);
+}
+
+.score{
+    font-size: 30px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px
+}
+
+.score .player{
+    font-size: 40px;
+}
+
+.score .player:first-child{
+    margin-right: 40px;
+}
+
+.score .player:last-child{
+    margin-left: 40px;
+}
+
+.board{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.board * {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.cell{
+    height: 17vh;
+    width: 10vw;
+    background-color: white;
+    box-shadow: 1px 1px 1px gray;
+    border: none;
+    border-radius: 5px;
+}
+
+button.cell{
+    font-size: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+dialog{
+    height: 40vh;
+    width: 40vw;
+    border: none;
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.retry{
+    height: 7vh;
+    width: 7vw;
+    font-size: 24px;
+    appearance: none;
+    border: none;
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.winner{
+    font-size: 70px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
